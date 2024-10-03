@@ -177,6 +177,8 @@ class Predictor(object):
 
             # combine bboxes and scores
             bboxes_scores = torch.cat((bboxes, scores.unsqueeze(1)), dim=1)  # [x1, y1, x2, y2, score]
+            print("Bounding Boxes + Scores:", bboxes_scores)
+            print("Class IDs:", class_ids)
         else:
             print("No objects detected.")
             bboxes_scores, class_ids = None, None
@@ -331,8 +333,8 @@ def main(exp, args):
         imageflow_demo(predictor, vis_folder, current_time, args)
 
 
-if __name__ == "__main__":
-    args = make_parser().parse_args()
-    exp = get_exp(args.exp_file, args.name)
+# if __name__ == "__main__":
+#     args = make_parser().parse_args()
+#     exp = get_exp(args.exp_file, args.name)
 
-    main(exp, args)
+#     main(exp, args)
