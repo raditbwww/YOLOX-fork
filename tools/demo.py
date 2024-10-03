@@ -164,6 +164,7 @@ class Predictor(object):
             )
             logger.info("Infer time: {:.4f}s".format(time.time() - t0))
 
+        outputs = outputs[0]
         # Extracting bboxes, scores, and class_ids
         if outputs is not None:
             outputs = outputs.cpu()
