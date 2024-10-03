@@ -164,10 +164,10 @@ class Predictor(object):
             )
             logger.info("Infer time: {:.4f}s".format(time.time() - t0))
 
-        outputs = outputs[0]
+        outputs = outputs[0].cpu()
         # Extracting bboxes, scores, and class_ids
         if outputs is not None:
-            outputs = outputs.cpu()
+            outputs = outputs
             bboxes = outputs[:, 0:4]  # x1, y1, x2, y2
             scores = outputs[:, 4] * outputs[:, 5]
             class_ids = outputs[:, 6]  # Class IDs
@@ -177,13 +177,13 @@ class Predictor(object):
 
             # combine bboxes and scores
             bboxes_scores = torch.cat((bboxes, scores.unsqueeze(1)), dim=1)  # [x1, y1, x2, y2, score]
-            print("Bounding Boxes + Scores:", bboxes_scores)
-            print("Class IDs:", class_ids)
+            # print("Bounding Boxes + Scores:", bboxes_scores)
+            # print("Class IDs:", class_ids)
         else:
             print("No objects detected.")
             bboxes_scores, class_ids = None, None
             
-        return bboxes_scores, class_ids, img_info
+        return bboxes_scores.tolist(), class_ids.tolist(), img_info
 
     def visual(self, output, img_info, cls_conf=0.35):
         ratio = img_info["ratio"]
