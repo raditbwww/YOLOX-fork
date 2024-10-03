@@ -167,7 +167,8 @@ class Predictor(object):
 
         if outputs[0] is None:
             print("No objects detected.")
-            bboxes_scores, class_ids = None, None
+            bboxes_scores = []
+            class_ids = []
             return bboxes_scores, class_ids, img_info
 
         outputs = outputs[0].cpu()
