@@ -163,7 +163,9 @@ class Predictor(object):
                 self.nmsthre, class_agnostic=True
             )
             logger.info("Infer time: {:.4f}s".format(time.time() - t0))
-
+        
+        print(outputs)
+        print(outputs[0])
         if outputs is None:
             print("No objects detected.")
             bboxes_scores, class_ids = None, None
