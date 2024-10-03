@@ -164,9 +164,8 @@ class Predictor(object):
             )
             logger.info("Infer time: {:.4f}s".format(time.time() - t0))
         
-        print(outputs)
-        print(outputs[0])
-        if outputs is None:
+
+        if outputs[0] is None:
             print("No objects detected.")
             bboxes_scores, class_ids = None, None
             return bboxes_scores, class_ids, img_info
