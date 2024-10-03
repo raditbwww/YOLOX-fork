@@ -166,7 +166,7 @@ class Predictor(object):
 
         # Extracting bboxes, scores, and class_ids
         if outputs is not None:
-            outputs = outputs[0].cpu()
+            outputs = outputs.cpu()
             bboxes = outputs[:, 0:4]  # x1, y1, x2, y2
             scores = outputs[:, 4] * outputs[:, 5]
             class_ids = outputs[:, 6]  # Class IDs
