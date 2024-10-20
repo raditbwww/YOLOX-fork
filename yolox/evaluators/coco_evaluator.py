@@ -314,7 +314,7 @@ class COCOEvaluator:
             if self.per_class_AR:
                 recall_50, AR_table = per_class_AR_table(cocoEval, class_names=cat_names)
                 info += "per class AR:\n" + AR_table + "\n"
-                info += "recall_50:" + recall_50 "\n"
+                info += "recall_50:" + recall_50 + "\n"
             return cocoEval.stats[0], cocoEval.stats[1], info
         else:
             return 0, 0, info
