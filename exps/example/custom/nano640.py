@@ -21,6 +21,9 @@ class Exp(MyExp):
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
         self.enable_mixup = False
 
+        # Train config
+        self.max_epochs = 200
+
         # Define yourself dataset path
         self.data_dir = "datasets/custom"
         self.train_ann = "instances_train2017.json"
