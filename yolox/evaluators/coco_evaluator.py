@@ -39,6 +39,7 @@ def per_class_AR_table(coco_eval, class_names=COCO_CLASSES, headers=["class", "A
     for idx, name in enumerate(class_names):
         recall = recalls[:, idx, 0, -1]
         recall = recall[recall > -1]
+        recall_50 = recall[0]
         ar = np.mean(recall) if recall.size else float("nan")
         per_class_AR[name] = float(ar * 100)
 
@@ -49,7 +50,7 @@ def per_class_AR_table(coco_eval, class_names=COCO_CLASSES, headers=["class", "A
     table = tabulate(
         row_pair, tablefmt="pipe", floatfmt=".3f", headers=table_headers, numalign="left",
     )
-    return table
+    return recall_50, table
 
 
 def per_class_AP_table(coco_eval, class_names=COCO_CLASSES, headers=["class", "AP"], colums=6):
@@ -311,8 +312,9 @@ class COCOEvaluator:
                 AP_table = per_class_AP_table(cocoEval, class_names=cat_names)
                 info += "per class AP:\n" + AP_table + "\n"
             if self.per_class_AR:
-                AR_table = per_class_AR_table(cocoEval, class_names=cat_names)
+                recall_50, AR_table = per_class_AR_table(cocoEval, class_names=cat_names)
                 info += "per class AR:\n" + AR_table + "\n"
+                info += "recall_50:" + recall_50 "\n"
             return cocoEval.stats[0], cocoEval.stats[1], info
         else:
             return 0, 0, info
