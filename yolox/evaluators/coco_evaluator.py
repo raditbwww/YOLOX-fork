@@ -31,6 +31,7 @@ from yolox.utils import (
 def per_class_AR_table(coco_eval, class_names=COCO_CLASSES, headers=["class", "AR"], colums=6):
     per_class_AR = {}
     recalls = coco_eval.eval["recall"]
+    print(recalls)
     # dimension of recalls: [TxKxAxM]
     # recall has dims (iou, cls, area range, max dets)
     assert len(class_names) == recalls.shape[1]
