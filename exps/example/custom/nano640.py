@@ -22,7 +22,7 @@ class Exp(MyExp):
         self.enable_mixup = False
 
         # Train config
-        self.max_epochs = 200
+        self.max_epoch = 200
 
         # Define yourself dataset path
         self.data_dir = "datasets/custom"
