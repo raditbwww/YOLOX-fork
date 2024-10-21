@@ -15,7 +15,9 @@ class Exp(MyExp):
         self.input_size = (640, 640)
         self.mosaic_scale = (0.5, 1.5)
         self.random_size = (10, 20)
-        self.test_size = (640, 640)
+        self.test_size = (640, 640)'
+
+        self.max_epochs = 200
 
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
