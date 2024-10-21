@@ -17,7 +17,7 @@ class Exp(MyExp):
         self.random_size = (10, 20)
         self.test_size = (640, 640)'
 
-        self.max_epochs = 200
+        self.max_epoch = 200
 
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
