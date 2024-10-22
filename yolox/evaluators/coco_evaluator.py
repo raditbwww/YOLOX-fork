@@ -187,6 +187,8 @@ class COCOEvaluator:
                 outputs, info_imgs, ids, return_outputs=True)
             data_list.extend(data_list_elem)
             output_data.update(image_wise_data)
+            print("data_list:",data_list)
+            print("output_data:",output_data)
 
         statistics = torch.cuda.FloatTensor([inference_time, nms_time, n_samples])
         if distributed:
