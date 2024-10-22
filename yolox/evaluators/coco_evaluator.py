@@ -289,9 +289,16 @@ class COCOEvaluator:
                 json.dump(data_dict, open("./yolox_testdev_2017.json", "w"))
                 cocoDt = cocoGt.loadRes("./yolox_testdev_2017.json")
             else:
-                _, tmp = tempfile.mkstemp()
-                json.dump(data_dict, open(tmp, "w"))
-                cocoDt = cocoGt.loadRes(tmp)
+                print("pred_results:",data_dict)
+                import os
+                # Define the output directory and file path
+                output_dir = "output"
+                pred_json = os.path.join(output_dir, "predictions.json")
+                # Create the directory if it doesn't exist
+                os.makedirs(output_dir, exist_ok=True)
+                with open(pred_json, 'w') as f:
+                    json.dump(data_dict, f)
+                cocoDt = cocoGt.loadRes(pred_json)
             try:
                 from yolox.layers import COCOeval_opt as COCOeval
             except ImportError:
